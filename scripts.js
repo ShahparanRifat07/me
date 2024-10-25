@@ -218,19 +218,20 @@ function section3Animation(lenis) {
         },
     });
     tl.to(".section-3 p", {
-        scale: 230, // Zoom in
+        scale: 2, // Zoom in
+        fontSize: "350vw",
         duration: 5,
         ease: "power2.in",
-        transformOrigin: "46% 50%",
+        transformOrigin: "48% 45%",
         scrollTrigger: {
             trigger: ".section-3",
             start: "center center",
-            end: "bottom+=75% bottom",
+            end: "bottom+=50% bottom",
             scrub: 0.5,
             pin: true,
             // markers: true,
         },
-    });
+    },"a");
 
     const tl2 = gsap.timeline();
     tl2.to(".inner-section-4", {
@@ -355,7 +356,6 @@ function section4Animation() {
         });
     });
 }
-
 function section5Animation() {
     let section5Title = document.querySelector(".experience-title");
     let section5TitleSpan = splitTextIntoSpans(section5Title);
@@ -365,7 +365,7 @@ function section5Animation() {
     let section5Timeline = gsap.timeline();
 
     section5Timeline.from(".experience-title span ", {
-        // yPercent: 50,
+        yPercent: 30,
         opacity: 0,
         // color: "black",
         duration: 6,
@@ -404,6 +404,198 @@ function section5Animation() {
 
 
 }
+function section6Animation() {
+    const section6 = document.querySelector(".section-6");
+    const section5 = document.querySelector(".section-5");
+    const section6Title = document.querySelector(".my-works-heading-warpper p");
+    const section6TitleSpan = splitTextIntoSpans(section6Title);
+    let sections = gsap.utils.toArray(".panel");
+
+
+    const section6Timeline = gsap.timeline();
+
+    section6Timeline.to(section6, {
+        backgroundColor: "black",
+        duration: 2,
+        ease: "power2.in",
+        scrollTrigger: {
+            trigger: section6,
+            start: "20% center",
+            end: "30% center",
+            scrub: 1,
+        },
+    })
+    .to(section5, {
+        backgroundColor: "black",
+        duration: 2,
+        ease: "power2.in",
+        scrollTrigger: {
+            trigger: section6,
+            start: "20% center",
+            end: "30% center",
+            scrub: 1,
+        },
+    })
+    .from(".my-works-heading-warpper p span", {
+        duration: 5,
+        stagger: 0.5,
+        ease: "sine.out",
+        opacity: 0,
+        scrollTrigger: {
+            trigger: section6,
+            start: "20% center",
+            end: "bottom center",
+            scrub: 1,
+            // markers: true,
+        },
+    })
+    
+
+    gsap.to(".inner-section-6", {
+        x: () => -(section6.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+            trigger: section6,
+            start: "50% center", // Start after text animation ends
+            end: "+=3000", // Adjust this value to control scroll length
+            pin: true,
+            scrub: 1,
+            // snap: {
+            //     snapTo: 1 / (sections.length - 1),
+            //     duration: {min: 0.2, max: 0.3},
+            //     delay: 0,
+            //     ease: "power1.inOut"
+            // },
+            // markers: true,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            // markers: true,
+            invalidateOnRefresh: true, // Handle window resizing
+            anticipatePin: 1,
+        },
+    });
+
+
+
+}
+function section7Animation() {
+    const section7 = document.querySelector(".section-7");
+    const section7Inner = document.querySelector(".section-7-inner");
+
+    const section7Timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: section7,
+            start: `${section7Inner.offsetTop}px top`,
+            end: `+=2000px center`,
+            pin: true,
+            scrub: 1, // Uncomment if you want smooth scrubbing
+            markers: true,
+        }
+    });
+
+
+    section7Timeline.to("#python", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#django", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#figma", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#gsap", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#webflow", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#git", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#postgres", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#fastapi", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#laravel", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#spring-boot", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#wordpress", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#redis", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#javascript", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#drf", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#docker", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#php", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#mysql", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#rabbitmq", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#java", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+    section7Timeline.to("#framer", {
+        filter: "blur(0)",
+        opacity: 1,
+        duration: 0.3,
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const lenisInstance = smoothenScroll();
@@ -413,6 +605,8 @@ document.addEventListener("DOMContentLoaded", () => {
     section3Animation(lenisInstance);
     section4Animation();
     section5Animation();
+    section6Animation();
+    section7Animation();
     // updateDhakaTime();
     // setInterval(updateDhakaTime, 1000);
 });
