@@ -58,7 +58,7 @@ function customCursor() {
             });
             project.addEventListener('mouseenter', (e) => {
                 cursor.classList.add('active');
-                cursor.innerHTML = `<p>VIEW</p> <br> <p> PROJECTS </p>`
+                cursor.innerHTML = `<p>VIEW</p> <br> <p> PROJECT </p>`
                 gsap.to(cursor, {
                     x: e.clientX + 'px',
                     y: e.clientY + 'px',

@@ -95,6 +95,7 @@ a {
     border-radius: 0%;
     background-color: transparent;
     transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
 }
 
 #custom-cursor p {
@@ -105,7 +106,6 @@ a {
     font-weight: 500;
     line-height: 0;
     font-size: 0.75rem;
-
 }
 #custom-cursor.active {
     display: flex !important;
