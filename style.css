@@ -84,7 +84,39 @@ a {
 
 
 
+/* Custom Cursor */
+#custom-cursor {
+    position: fixed;
+    z-index: 1200;
+    display: none;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    border-radius: 0%;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+}
 
+#custom-cursor p {
+    /* position: absolute; */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    font-weight: 500;
+    line-height: 0;
+    font-size: 0.75rem;
+
+}
+#custom-cursor.active {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: var(--tomato);
+}
 
 
 
@@ -98,7 +130,8 @@ a {
     width: 100%;
     height: 100%;
     min-height: 100vh;
-    background-color: var(--black);
+    /* background-color: var(--black); */
+    margin-bottom: 70vh;
 }
 
 .nav {
@@ -107,15 +140,16 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 3rem;
+    padding: 1.5rem 3rem;
     isolation: isolate;
-    z-index: 50;
+    z-index: 80;
 
+    transition: top 0.3s ease-in-out;
 
     /* Glassmorphism effect */
-    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0));
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.0));
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); */
+    -webkit-backdrop-filter: blur(10px);
     /* mask-image: linear-gradient(to bottom, 
         rgba(0, 0, 0, 1) 90%, 
         rgba(0, 0, 0, 0)
@@ -245,6 +279,8 @@ a {
     /* border: 1px solid red; */
     background-color: var(--tomato);
     border-bottom: 2px solid var(--black);
+    cursor: pointer !important;
+    z-index: 151;
 }
 
 .nav-link:hover>.nav-circle {
@@ -255,13 +291,14 @@ a {
 .nav-link p {
     font-size: calc(100vw / 45 + 1.5em);
     font-weight: 400;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: all 0.3s ease-in-out;
 }
 
 .nav-link:hover>p {
     transform: translateX(10%);
     color: var(--white);
+    cursor: pointer !important;
 }
 
 .work-nav-link {
@@ -308,6 +345,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     overflow-x: hidden;
+    background-color: var(--black);
 
 }
 
@@ -319,6 +357,7 @@ h1 {
     overflow: hidden;
     padding: 0 3rem;
     /* margin-bottom: 5rem; */
+    z-index: 1;
 
 }
 
@@ -426,6 +465,7 @@ h1 {
     position: relative;
     transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     padding-bottom: 5px;
+    text-decoration: none;
 }
 
 .a-link::after {
@@ -444,6 +484,9 @@ h1 {
     transform: scaleX(1);
 }
 
+.hire-me{
+    color: var(--white);
+}
 
 
 
@@ -458,31 +501,49 @@ h1 {
 
 .section-2 {
     width: 100%;
-    /* min-height: 100vh; */
+    /* height: 130vh; */
     background: var(--black);
     display: flex;
-    justify-content: space-between;
+    justify-content:center;
+    align-items: center;
+    /* border: 1px solid green; */
+    position: relative;
+    padding: 18rem 3rem 3rem 3rem;
+}
+
+.section-2-inner{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
+    /* border: 1px solid red; */
+    /* margin: 20rem 3rem 3rem 3rem; */
+}
+
+.section-2-content{
+    display: flex;
+    justify-content: space-between;
     align-items: stretch;
-    padding: 20rem 3rem 0rem 3rem;
+    flex-wrap: wrap;
+}
+.section-2-content>div:first-child {
+    /* border: 1px solid red; */
+    height: 100%;
 }
 
-.section-2>div:first-child {
-    /* border: 1px solid red */
-}
-
-.section-2>div:first-child p {
+.section-2-content>div:first-child p {
     color: var(--tomato);
     font-family: "Anton", sans-serif;
     font-size: 9rem;
     text-align: start;
 }
-
-.section-2>div:last-child {
+.section-2-content>div:last-child {
     width: 65%;
 }
 
-.section-2>div:last-child p {
+.section-2-content>div:last-child p {
     color: var(--white);
     font-size: 3.5rem;
     font-weight: 400;
@@ -1006,10 +1067,127 @@ h1 {
 
 
 
-.section-8{
+/* .section-8{
     width: 100%;
-    height: 100vh;
-    background-color: var(--tomato);
+    height: 70vh;
+    background: transparent;
     display: flex;
     justify-content: center;
+    pointer-events: none;
+} */
+
+
+.section-9{
+    position: fixed;
+    z-index: -100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70vh;
+    background: var(--tomato);
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-btn{
+    font-size: calc(100vw / 12 + 1.5em);
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.social-icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.icon a{
+    cursor: pointer;
+}
+
+.icon a i{
+    color: var(--black);
+    font-size: 2.5rem;
+    transition: all 0.4s ease;
+}
+.icon a:hover i{
+    color: var(--white);
+}
+
+.copywrite{
+    width: 100%;
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.copywrite-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+}
+.copywrite-text p {
+    text-transform: uppercase;
+}
+
+.cv-link a{
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.cv-link i{
+    font-size: 1.25rem;
+    margin-right: 12px;
+}
+
+
+.local-time-wrapper{
+    /* border: 1px solid red; */
+}
+.local-time-wrapper p{
+    text-align: right;
+}
+.local-time-wrapper p span{
+    margin-left: 0.5rem;
+}
+
+
+.email-phone{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 3rem;
+    top: 0;
+    left: 0;
+}
+
+.email-phone a{
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.email-phone p{
+    color: var(--black);
+    font-size: 1.125rem;
+    font-weight: 500;
 }
