@@ -36,32 +36,32 @@ function smoothScrollToSection(targetSection) {
     gsap.to(window, {
         duration: 1, // Adjust duration for smoothness
         scrollTo: { y: targetSection, offsetY: 50 }, // Scroll to section with some offset
-        ease: "power2.inOut" // Easing effect for smooth scroll
+        ease: "power2.inOut", // Easing effect for smooth scroll
     });
 }
 
 function customCursor() {
-    let cursor = document.querySelector('#custom-cursor');
+    let cursor = document.querySelector("#custom-cursor");
     let projects = document.querySelectorAll(".project-card");
 
     if (window.innerWidth >= 992) {
         projects.forEach((project, index) => {
-            project.addEventListener('mousemove', (e) => {
+            project.addEventListener("mousemove", (e) => {
                 gsap.to(cursor, {
-                    x: e.clientX + 'px',
-                    y: e.clientY + 'px',
+                    x: e.clientX + "px",
+                    y: e.clientY + "px",
                     xPercent: -50,
                     yPercent: -50,
                     duration: 0.3,
                     ease: "power1.out",
-                })
+                });
             });
-            project.addEventListener('mouseenter', (e) => {
-                cursor.classList.add('active');
-                cursor.innerHTML = `<p>VIEW</p> <br> <p> PROJECT </p>`
+            project.addEventListener("mouseenter", (e) => {
+                cursor.classList.add("active");
+                cursor.innerHTML = `<p>VIEW</p> <br> <p> PROJECT </p>`;
                 gsap.to(cursor, {
-                    x: e.clientX + 'px',
-                    y: e.clientY + 'px',
+                    x: e.clientX + "px",
+                    y: e.clientY + "px",
                     xPercent: -50,
                     yPercent: -50,
                     duration: 0.3,
@@ -71,13 +71,13 @@ function customCursor() {
                     opacity: 1,
                     backgroundColor: `var(--tomato)`,
                     ease: "none",
-                })
+                });
             });
-            project.addEventListener('mouseleave', () => {
+            project.addEventListener("mouseleave", () => {
                 // cursor.classList.remove('active');
                 gsap.to(cursor, {
-                    top: e.clientX + 'px',
-                    left: e.clientY + 'px',
+                    top: e.clientX + "px",
+                    left: e.clientY + "px",
                     xPercent: -50,
                     yPercent: -50,
                     duration: 0.3,
@@ -86,7 +86,7 @@ function customCursor() {
                     opacity: 0,
                     backgroundColor: "transparent",
                     ease: "none",
-                })
+                });
             });
         });
     }
@@ -102,7 +102,7 @@ function showHideNavbar() {
             document.querySelector(".nav").style.top = "-10vh";
         }
         prevScrollpos = currentScrollPos;
-    }
+    };
 }
 
 // function navbar() {
@@ -133,15 +133,13 @@ function showHideNavbar() {
 //             .to(expendMenu, { zIndex: -100, duration: 0.1 })
 //     });
 
-
 //     const sections = {
-//         work: document.querySelector(".section-6"), 
+//         work: document.querySelector(".section-6"),
 //         about: document.querySelector(".section-2-content"),
 //         education: document.querySelector(".inner-section-4"),
 //         experience: document.querySelector(".inner-section-5"),
 //         contact: document.querySelector(".section-9")
 //     };
-
 
 //      // Add event listeners to navigation links for smooth scrolling
 //      document.querySelector('.work-nav-link').addEventListener('click', () => {
@@ -170,10 +168,11 @@ function navbar(lenis) {
     const expendMenu = document.querySelector(".expend-nav");
     const closebtn = document.querySelector(".close-btn-text");
     const logo = document.querySelector(".logo svg path");
-    const logoFillColor = getComputedStyle(logo).getPropertyValue('fill');
-    
+    const logoFillColor = getComputedStyle(logo).getPropertyValue("fill");
+
     function closeMenu() {
-        return gsap.timeline()
+        return gsap
+            .timeline()
             .to(".right-nav", { yPercent: 100, duration: 0.5 }, "a")
             .to(".nav-link", { xPercent: 100, duration: 0.5, stagger: 0.1 }, "a")
             .to(expendMenu, { duration: 0.2, opacity: 0 })
@@ -185,21 +184,21 @@ function navbar(lenis) {
         if (!targetSection) return;
         ScrollTrigger.refresh();
 
-        const isFixed = window.getComputedStyle(targetSection).position === 'fixed';
+        const isFixed = window.getComputedStyle(targetSection).position === "fixed";
 
         if (isFixed) {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
-            
+
             lenis.scrollTo(documentHeight - windowHeight, {
                 duration: 1.5,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
         } else {
             lenis.scrollTo(targetSection, {
                 offset: offsetValue,
                 duration: 1.5,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             });
         }
     }
@@ -243,7 +242,7 @@ function navbar(lenis) {
     //         // For fixed sections
     //         const windowHeight = window.innerHeight;
     //         const documentHeight = document.documentElement.scrollHeight;
-            
+
     //         return lenis.scrollTo(documentHeight - windowHeight, {
     //             duration: 1.5,
     //             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
@@ -262,7 +261,8 @@ function navbar(lenis) {
         gsap.set(".right-nav", { yPercent: 0 });
         gsap.set(".nav-link", { xPercent: 0 });
         expendMenu.style.zIndex = 150;
-        gsap.timeline()
+        gsap
+            .timeline()
             .to(expendMenu, { duration: 0.2, opacity: 1 })
             .from(".right-nav", { yPercent: 100, duration: 0.5 }, "a")
             .from(".nav-link", { xPercent: 100, duration: 0.5, stagger: 0.1 }, "a");
@@ -273,15 +273,19 @@ function navbar(lenis) {
     });
 
     const navLinks = [
-        { selector: '.work-nav-link', target: '.inner-section-6' , offset: 0 },
-        { selector: '.about-nav-link', target: '.section-2-inner', offset: 0 },
-        { selector: '.education-nav-link', target: '.inner-section-4', offset: 60 },
-        { selector: '.experience-nav-link', target: '.inner-section-5', offset: 150 },
-        { selector: '.contact-nav-link', target: '.section-9', offset: 0 }
+        { selector: ".work-nav-link", target: ".inner-section-6", offset: 0 },
+        { selector: ".about-nav-link", target: ".section-2-inner", offset: 0 },
+        { selector: ".education-nav-link", target: ".inner-section-4", offset: 60 },
+        {
+            selector: ".experience-nav-link",
+            target: ".inner-section-5",
+            offset: 150,
+        },
+        { selector: ".contact-nav-link", target: ".section-9", offset: 0 },
     ];
 
     navLinks.forEach(({ selector, target, offset }) => {
-        document.querySelector(selector).addEventListener('click', () => {
+        document.querySelector(selector).addEventListener("click", () => {
             closeMenu().then(() => {
                 scrollToSection(target, offset);
             });
@@ -289,18 +293,17 @@ function navbar(lenis) {
     });
 }
 
-
 function updateDhakaTime() {
     const options = {
         timeZone: "Asia/Dhaka",
-        hour: "2-digit", 
+        hour: "2-digit",
         minute: "2-digit",
         // second: "2-digit",
         hour12: true,
     };
 
     const now = new Date();
-    const dhakaTime = new Intl.DateTimeFormat("en-US", options).format(now); 
+    const dhakaTime = new Intl.DateTimeFormat("en-US", options).format(now);
 
     document.querySelector(".local-time").innerText = dhakaTime;
 }
@@ -383,6 +386,15 @@ function heroSectionAnimation() {
         },
         "-=1.5"
     );
+    timeline.from(
+        ".mobile-middle-section",
+        {
+            opacity: 0,
+            yPercent: 15,
+            duration: 1,
+        },
+        "-=1.5"
+    );
 }
 function section2Animation() {
     const section2 = document.querySelector(".section-2");
@@ -390,96 +402,127 @@ function section2Animation() {
     const section2Title = document.querySelector(
         ".section-2-content > div:first-child  p"
     );
-    const section2Text = document.querySelector(".section-2-content > div:last-child p");
-
+    const section2Text = document.querySelector(
+        ".section-2-content > div:last-child p"
+    );
     splitTextIntoSpans(section2Title);
     splitTextIntoSpans(section2Text);
-
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from(".section-2-heading span", {
-        y: "100%",
-        duration: 5,
-        stagger: 0.5,
-        ease: "sine.out",
-        opacity: 0,
-        scrollTrigger: {
-            trigger: section2,
-            start: `${section2Inner.offsetTop - 150}px top`,
-            end: () => `+=${section2.clientHeight * 0.3}`,
-            scrub: 1,
-            // markers: true,
-        },
-    });
-
-    console.log(section2Inner.clientHeight , section2Inner.offsetTop);
-    let tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: section2,
-            pin: true,
-            start: `${section2Inner.offsetTop}px top`,
-            // end: "bottom bottom",
-            end: () => `bottom+=${section2Inner.clientHeight * 1.5}px bottom`,
-            scrub: 1,
-            // markers: true,
-        },
-    });
-
-    tl.to(".section-2-text span", {
-        opacity: 1,
-        stagger: 0.5,
-    });
+    if (window.innerWidth > 767) {
+        gsap.from(".section-2-heading span", {
+            y: "100%",
+            duration: 5,
+            stagger: 0.5,
+            ease: "sine.out",
+            opacity: 0,
+            scrollTrigger: {
+                trigger: section2,
+                start: `${section2Inner.offsetTop - 150}px top`,
+                end: () => `+=${section2.clientHeight * 0.3}`,
+                scrub: 1,
+            },
+        });
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section2,
+                pin: true,
+                start: `${section2Inner.offsetTop}px top`,
+                end: () => `bottom+=${section2Inner.clientHeight * 1.5}px bottom`,
+                scrub: 1,
+                // markers: true,
+            },
+        });
+        tl.to(".section-2-text span", {
+            opacity: 1,
+            stagger: 0.5,
+        });
+    } else {
+        gsap.from(".section-2-heading span", {
+            y: "100%",
+            duration: 1,
+            stagger: 0.05,
+            ease: "sine.out",
+            opacity: 0,
+            scrollTrigger: {
+                trigger: section2,
+                start: `${section2Inner.offsetTop - 300}px top`,
+                end: () => `+=300px`,
+                // scrub: 1,
+                // markers: true,
+            },
+        });
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section2,
+                start: `${section2Inner.offsetTop - 300}px top`,
+                end: () => `75% center`,
+                // scrub: 1,
+                // markers: true,
+            },
+        });
+        tl.to(".section-2-text span", {
+            opacity: 1,
+            stagger: 0.01,
+        });
+    }
 }
 function section3Animation(lenis) {
     const text1 = document.querySelector(".section-3 p");
     splitTextIntoSpans(text1);
 
     const tl = gsap.timeline();
+    if (window.innerWidth > 767) {
+        tl.from(".section-3 p span", {
+            y: "100%",
+            duration: 5,
+            stagger: 0.5,
+            ease: "sine.out",
+            opacity: 0,
+            scrollTrigger: {
+                trigger: ".section-3",
+                start: "top center",
+                end: "bottom bottom",
+                scrub: 1,
+                // markers: true,
+            },
+        });
+        tl.to(
+            ".section-3 p",
+            {
+                scale: 2, // Zoom in
+                fontSize: "350vw",
+                duration: 5,
+                ease: "power2.in",
+                transformOrigin: "48% 45%",
+                scrollTrigger: {
+                    trigger: ".section-3",
+                    start: "center center",
+                    end: "bottom+=50% bottom",
+                    scrub: 0.5,
+                    pin: true,
+                    // markers: true,
+                },
+            },
+            "a"
+        );
 
-    tl.from(".section-3 p span", {
-        y: "100%",
-        duration: 5,
-        stagger: 0.5,
-        ease: "sine.out",
-        opacity: 0,
-        scrollTrigger: {
-            trigger: ".section-3",
-            start: "top center",
-            end: "bottom bottom",
-            scrub: 1,
-            // markers: true,
-        },
-    });
-    tl.to(".section-3 p", {
-        scale: 2, // Zoom in
-        fontSize: "350vw",
-        duration: 5,
-        ease: "power2.in",
-        transformOrigin: "48% 45%",
-        scrollTrigger: {
-            trigger: ".section-3",
-            start: "center center",
-            end: "bottom+=50% bottom",
-            scrub: 0.5,
-            pin: true,
-            // markers: true,
-        },
-    },"a");
-
-    const tl2 = gsap.timeline();
-    tl2.to(".inner-section-4", {
-        scale: 1, // Zoom in
-        duration: 3,
-        ease: "power2.in",
-        scrollTrigger: {
-            trigger: ".section-4",
-            start: "top top",
-            end: "+=1000px center",
-            scrub: true, // Smooth scroll animation
-            pin: true, // Pin the section while scrolling
-            // markers: true, // Show markers on the timeline
-        },
-    });
+        const tl2 = gsap.timeline();
+        tl2.to(".inner-section-4", {
+            scale: 1, // Zoom in
+            duration: 3,
+            ease: "power2.in",
+            scrollTrigger: {
+                trigger: ".section-4",
+                start: "top top",
+                end: "+=1000px center",
+                scrub: true, // Smooth scroll animation
+                pin: true, // Pin the section while scrolling
+                // markers: true, // Show markers on the timeline
+            },
+        });
+    } else {
+    }
 
     // tl2.to(".nav-menu",{
     //     color: "black",
@@ -501,93 +544,95 @@ function section3Animation(lenis) {
 }
 function section4Animation() {
     const texts = document.querySelectorAll(".degree");
-    texts.forEach(element => {
+    texts.forEach((element) => {
         splitTextIntoSpans(element); // This function splits text into spans
     });
 
     const eduCards = document.querySelectorAll(".edu-card");
+    if (window.innerWidth > 767) {
+        eduCards.forEach((element) => {
+            const degreeTitle = element.querySelector(".degree-title");
+            const degreeInfo = element.querySelector(".degree-info");
+            const degreeInfoPs = element.querySelectorAll(".degree-info p");
 
-    eduCards.forEach(element => {
-        const degreeTitle = element.querySelector(".degree-title");
-        const degreeInfo = element.querySelector(".degree-info");
-        const degreeInfoPs = element.querySelectorAll(".degree-info p");
+            // Mouseover event to trigger animation and opacity change
+            degreeTitle.addEventListener("mouseover", () => {
+                let text1 = degreeTitle.querySelectorAll(".first-text span");
+                let text2 = degreeTitle.querySelectorAll(".second-text span");
 
-        // Mouseover event to trigger animation and opacity change
-        degreeTitle.addEventListener("mouseover", () => {
-            let text1 = degreeTitle.querySelectorAll(".first-text span");
-            let text2 = degreeTitle.querySelectorAll(".second-text span");
+                // Animate the hovered text
+                gsap.to(text1, {
+                    yPercent: -100,
+                    stagger: 0.01,
+                    ease: "sine.out",
+                    duration: 0.5,
+                    delay: 0.35,
+                });
+                gsap.to(text2, {
+                    yPercent: -100,
+                    stagger: 0.01,
+                    ease: "sine.out",
+                    duration: 0.5,
+                    delay: 0.35,
+                });
 
-            // Animate the hovered text
-            gsap.to(text1, {
-                yPercent: -100,
-                stagger: 0.01,
-                ease: "sine.out",
-                duration: 0.5,
-                delay: 0.35,
+                gsap.to(degreeInfoPs, {
+                    opacity: 1, // Show the degree info
+                    ease: "sine.out",
+                    stagger: 0.3,
+                });
+
+                // Reduce opacity of sibling degreeTitles
+                eduCards.forEach((sibling) => {
+                    if (sibling !== element) {
+                        const siblingDegreeTitle = sibling.querySelector(".degree-title");
+                        gsap.to(siblingDegreeTitle, {
+                            opacity: 0.3, // Set lower opacity for siblings
+                            duration: 0.3,
+                        });
+                    }
+                });
             });
-            gsap.to(text2, {
-                yPercent: -100,
-                stagger: 0.01,
-                ease: "sine.out",
-                duration: 0.5,
-                delay: 0.35,
-            });
 
-            gsap.to(degreeInfoPs, {
-                opacity: 1, // Show the degree info
-                ease: "sine.out",
-                stagger: 0.3,
-            });
+            // Mouseleave event to reset the text animation and opacity
+            degreeTitle.addEventListener("mouseleave", () => {
+                // Reset the text animation
+                let text1 = degreeTitle.querySelectorAll(".first-text span");
+                let text2 = degreeTitle.querySelectorAll(".second-text span");
 
-            // Reduce opacity of sibling degreeTitles
-            eduCards.forEach(sibling => {
-                if (sibling !== element) {
+                gsap.to(text1, {
+                    yPercent: 0, // Move back to original position
+                    stagger: 0.01,
+                    ease: "power2.in",
+                    duration: 0.5,
+                    delay: 0.35,
+                });
+                gsap.to(text2, {
+                    yPercent: 100, // Move back to original position
+                    stagger: 0.01,
+                    ease: "power2.in",
+                    duration: 0.5,
+                    delay: 0.35,
+                });
+
+                gsap.to(degreeInfoPs, {
+                    opacity: 0.35, // Show the degree info
+                    ease: "sine.out",
+                    stagger: 0.3,
+                });
+
+                // Restore opacity of all degreeTitles
+                eduCards.forEach((sibling) => {
                     const siblingDegreeTitle = sibling.querySelector(".degree-title");
                     gsap.to(siblingDegreeTitle, {
-                        opacity: 0.3, // Set lower opacity for siblings
+                        opacity: 1, // Reset to full opacity
                         duration: 0.3,
                     });
-                }
-            });
-        });
-
-        // Mouseleave event to reset the text animation and opacity
-        degreeTitle.addEventListener("mouseleave", () => {
-            // Reset the text animation
-            let text1 = degreeTitle.querySelectorAll(".first-text span");
-            let text2 = degreeTitle.querySelectorAll(".second-text span");
-
-            gsap.to(text1, {
-                yPercent: 0, // Move back to original position
-                stagger: 0.01,
-                ease: "power2.in",
-                duration: 0.5,
-                delay: 0.35,
-            });
-            gsap.to(text2, {
-                yPercent: 100, // Move back to original position
-                stagger: 0.01,
-                ease: "power2.in",
-                duration: 0.5,
-                delay: 0.35,
-            });
-
-            gsap.to(degreeInfoPs, {
-                opacity: 0.35, // Show the degree info
-                ease: "sine.out",
-                stagger: 0.3,
-            });
-
-            // Restore opacity of all degreeTitles
-            eduCards.forEach(sibling => {
-                const siblingDegreeTitle = sibling.querySelector(".degree-title");
-                gsap.to(siblingDegreeTitle, {
-                    opacity: 1, // Reset to full opacity
-                    duration: 0.3,
                 });
             });
         });
-    });
+    } else {
+    }
 }
 function section5Animation() {
     let section5Title = document.querySelector(".experience-title");
@@ -596,28 +641,26 @@ function section5Animation() {
     let section5Ps = document.querySelectorAll(".experience-wrapper p");
 
     let section5Timeline = gsap.timeline();
-
-    section5Timeline.from(".experience-title span ", {
-        yPercent: 30,
-        opacity: 0,
-        // color: "black",
-        duration: 6,
-        stagger: 0.6,
-        ease: "power2.in",
-        scrollTrigger: {
-            trigger: ".experience-heading",
-            start: "top center",
-            end: "bottom bottom",
-            scrub: 1,
-            // markers: true,
-        },
-    });
-
-
     const experience_cards = gsap.utils.toArray(".experience-card");
 
-    experience_cards.forEach((card, index) => {
-        // if (index !== 0) {
+    if (window.innerWidth > 767) {
+        section5Timeline.from(".experience-title span ", {
+            yPercent: 30,
+            opacity: 0,
+            // color: "black",
+            duration: 6,
+            stagger: 0.6,
+            ease: "power2.in",
+            scrollTrigger: {
+                trigger: ".experience-heading",
+                start: "top center",
+                end: "bottom bottom",
+                scrub: 1,
+                // markers: true,
+            },
+        });
+        experience_cards.forEach((card, index) => {
+            // if (index !== 0) {
             gsap.from(card, {
                 yPercent: 50,
                 opacity: 0,
@@ -630,12 +673,30 @@ function section5Animation() {
                     end: "+=800px bottom",
                     // markers: true,
                     scrub: 1,
-                }
+                },
             });
-        // }
-    })
-
-
+            // }
+        });
+    } else {
+        experience_cards.forEach((card, index) => {
+            // if (index !== 0) {
+            gsap.from(card, {
+                yPercent: 30,
+                opacity: 0,
+                duration: 1.5,
+                ease: "expo.out",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "-50% 80%",
+                    end: "+=800px bottom",
+                    // markers: true,
+                    scrub: 1,
+                },
+            });
+            // }
+        });
+    }
 }
 function section6Animation() {
     const section6 = document.querySelector(".section-6");
@@ -644,191 +705,209 @@ function section6Animation() {
     const section6TitleSpan = splitTextIntoSpans(section6Title);
     let sections = gsap.utils.toArray(".panel");
 
-
     const section6Timeline = gsap.timeline();
 
-    section6Timeline.to(section6, {
-        backgroundColor: "black",
-        duration: 2,
-        ease: "power2.in",
-        scrollTrigger: {
-            trigger: section6,
-            start: "20% center",
-            end: "30% center",
-            scrub: 1,
-        },
-    })
-    .to(section5, {
-        backgroundColor: "black",
-        duration: 2,
-        ease: "power2.in",
-        scrollTrigger: {
-            trigger: section6,
-            start: "20% center",
-            end: "30% center",
-            scrub: 1,
-        },
-    })
-    .from(".my-works-heading-warpper p span", {
-        duration: 5,
-        stagger: 0.5,
-        ease: "sine.out",
-        opacity: 0,
-        scrollTrigger: {
-            trigger: section6,
-            start: "20% center",
-            end: "bottom center",
-            scrub: 1,
-            // markers: true,
-        },
-    })
-    
+    if (window.innerWidth > 767) {
+        section6Timeline
+            .to(section6, {
+                backgroundColor: "black",
+                duration: 2,
+                ease: "power2.in",
+                scrollTrigger: {
+                    trigger: section6,
+                    start: "20% center",
+                    end: "30% center",
+                    scrub: 1,
+                },
+            })
+            .to(section5, {
+                backgroundColor: "black",
+                duration: 2,
+                ease: "power2.in",
+                scrollTrigger: {
+                    trigger: section6,
+                    start: "20% center",
+                    end: "30% center",
+                    scrub: 1,
+                },
+            })
+            .from(".my-works-heading-warpper p span", {
+                duration: 5,
+                stagger: 0.5,
+                ease: "sine.out",
+                opacity: 0,
+                scrollTrigger: {
+                    trigger: section6,
+                    start: "20% center",
+                    end: "bottom center",
+                    scrub: 1,
+                    // markers: true,
+                },
+            });
 
-    gsap.to(".inner-section-6", {
-        x: () => -(section6.scrollWidth - window.innerWidth),
-        ease: "none",
-        scrollTrigger: {
-            trigger: section6,
-            start: "50% center", // Start after text animation ends
-            end: "+=3000", // Adjust this value to control scroll length
-            pin: true,
-            scrub: 1,
-            // snap: {
-            //     snapTo: 1 / (sections.length - 1),
-            //     duration: {min: 0.2, max: 0.3},
-            //     delay: 0,
-            //     ease: "power1.inOut"
-            // },
-            // markers: true,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-            // markers: true,
-            invalidateOnRefresh: true, // Handle window resizing
-            anticipatePin: 1,
-        },
-    });
-
-
-
+        gsap.to(".inner-section-6", {
+            x: () => -(section6.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+                trigger: section6,
+                start: "50% center",
+                end: "+=3000",
+                pin: true,
+                scrub: 1,
+                // markers: true,
+                invalidateOnRefresh: true,
+                anticipatePin: 1,
+                // markers: true,
+                invalidateOnRefresh: true,
+                anticipatePin: 1,
+            },
+        });
+    } else {
+        section6Timeline
+            .to(section6, {
+                backgroundColor: "black",
+                duration: 2,
+                ease: "power2.in",
+                scrollTrigger: {
+                    trigger: section6,
+                    start: "-3% center",
+                    end: "5% center",
+                    scrub: 1,
+                    // markers: true,
+                },
+            })
+            .to(section5, {
+                backgroundColor: "black",
+                duration: 2,
+                ease: "power2.in",
+                scrollTrigger: {
+                    trigger: section6,
+                    start: "-3% center",
+                    end: "5% center",
+                    scrub: 1,
+                    // markers: true,
+                },
+            })
+    }
 }
 function section7Animation() {
     const section7 = document.querySelector(".section-7");
     const section7Inner = document.querySelector(".section-7-inner");
 
-    const section7Timeline = gsap.timeline({
-        scrollTrigger: {
-            trigger: section7,
-            start: `${section7Inner.offsetTop}px top`,
-            end: `+=2000px center`,
-            pin: true,
-            scrub: 1, // Uncomment if you want smooth scrubbing
-            // markers: true,
-        }
-    });
-
-
-    section7Timeline.to("#python", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#django", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#figma", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#gsap", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#webflow", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#git", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#postgres", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#fastapi", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#laravel", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#spring-boot", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#wordpress", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#redis", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#javascript", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#drf", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#docker", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#php", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#mysql", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#rabbitmq", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#java", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
-    section7Timeline.to("#framer", {
-        filter: "blur(0)",
-        opacity: 1,
-        duration: 0.3,
-    });
+    if (window.innerWidth > 767) {
+        const section7Timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: section7,
+                start: `${section7Inner.offsetTop}px top`,
+                end: `+=2000px center`,
+                pin: true,
+                scrub: 1, // Uncomment if you want smooth scrubbing
+                // markers: true,
+            },
+        });
+        section7Timeline.to("#python", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#django", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#figma", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#gsap", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#webflow", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#git", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#postgres", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#fastapi", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#laravel", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#spring-boot", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#wordpress", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#redis", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#javascript", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#drf", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#docker", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#php", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#mysql", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#rabbitmq", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#java", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+        section7Timeline.to("#framer", {
+            filter: "blur(0)",
+            opacity: 1,
+            duration: 0.3,
+        });
+    } else {
+    }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const lenisInstance = smoothenScroll();
