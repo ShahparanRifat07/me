@@ -704,6 +704,7 @@ function section6Animation() {
     const section6Title = document.querySelector(".my-works-heading-warpper p");
     const section6TitleSpan = splitTextIntoSpans(section6Title);
     let sections = gsap.utils.toArray(".panel");
+    let cards = gsap.utils.toArray(".project-card");
 
     const section6Timeline = gsap.timeline();
 
@@ -788,6 +789,25 @@ function section6Animation() {
                     // markers: true,
                 },
             })
+
+            cards.forEach((card, index) => {
+            // if (index !== 0) {
+            gsap.from(card, {
+                yPercent: 50,
+                opacity: 0,
+                duration: 1.5,
+                ease: "expo.out",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "-50% 80%",
+                    end: "+=800px bottom",
+                    // markers: true,
+                    scrub: 1,
+                },
+            });
+            // }
+        });
     }
 }
 function section7Animation() {
